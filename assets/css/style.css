@@ -12,7 +12,6 @@
     --color-gray-100: oklch(96.7% 0.003 264.542);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-gray-400: oklch(70.7% 0.022 261.325);
     --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --color-gray-700: oklch(37.3% 0.034 259.733);
@@ -51,10 +50,12 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --color-primary: #2a52be;
-    --color-secondary: #10b981;
+    --color-primary: #152d6c;
+    --color-secondary: #ffb12d;
     --color-dark: #1f2937;
     --color-accent: #7c3aed;
+    --color-cyan: #06b6d4;
+    --color-success: #16a34a;
     --font-display: "Inter", sans-serif;
   }
 }
@@ -514,6 +515,15 @@
       background-color: color-mix(in oklab, var(--color-accent) 10%, transparent);
     }
   }
+  .bg-cyan {
+    background-color: var(--color-cyan);
+  }
+  .bg-cyan\/10 {
+    background-color: color-mix(in srgb, #06b6d4 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-cyan) 10%, transparent);
+    }
+  }
   .bg-gray-50 {
     background-color: var(--color-gray-50);
   }
@@ -527,7 +537,7 @@
     background-color: var(--color-primary);
   }
   .bg-primary\/10 {
-    background-color: color-mix(in srgb, #2a52be 10%, transparent);
+    background-color: color-mix(in srgb, #152d6c 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
     }
@@ -536,9 +546,18 @@
     background-color: var(--color-secondary);
   }
   .bg-secondary\/10 {
-    background-color: color-mix(in srgb, #10b981 10%, transparent);
+    background-color: color-mix(in srgb, #ffb12d 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-secondary) 10%, transparent);
+    }
+  }
+  .bg-success {
+    background-color: var(--color-success);
+  }
+  .bg-success\/10 {
+    background-color: color-mix(in srgb, #16a34a 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-success) 10%, transparent);
     }
   }
   .bg-white {
@@ -646,14 +665,14 @@
   .text-black {
     color: var(--color-black);
   }
+  .text-cyan {
+    color: var(--color-cyan);
+  }
   .text-dark {
     color: var(--color-dark);
   }
   .text-gray-300 {
     color: var(--color-gray-300);
-  }
-  .text-gray-400 {
-    color: var(--color-gray-400);
   }
   .text-gray-600 {
     color: var(--color-gray-600);
@@ -666,6 +685,9 @@
   }
   .text-secondary {
     color: var(--color-secondary);
+  }
+  .text-success {
+    color: var(--color-success);
   }
   .text-white {
     color: var(--color-white);
@@ -693,6 +715,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-100);
+      }
+    }
+  }
+  .hover\:bg-primary {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary);
       }
     }
   }
@@ -823,6 +852,11 @@
       align-items: center;
     }
   }
+  .md\:justify-start {
+    @media (width >= 48rem) {
+      justify-content: flex-start;
+    }
+  }
   .md\:space-x-8 {
     @media (width >= 48rem) {
       :where(& > :not(:last-child)) {
@@ -830,6 +864,11 @@
         margin-inline-start: calc(calc(var(--spacing) * 8) * var(--tw-space-x-reverse));
         margin-inline-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-x-reverse)));
       }
+    }
+  }
+  .md\:text-left {
+    @media (width >= 48rem) {
+      text-align: left;
     }
   }
   .md\:text-2xl {
@@ -901,9 +940,9 @@ body {
   scroll-behavior: smooth;
 }
 .hero {
-  background: linear-gradient(rgba(0, 41, 107, 0.7), rgba(0, 41, 107, 0.7)), url("/assets/img/sales-solution.webp") no-repeat center center;
+  background: url("/assets/img/lunaone-hero-bg.webp") no-repeat center center;
   background-size: cover;
-  background-position: center;
+  position: relative;
 }
 .btn-primary {
   transition: all 0.3s ease;
